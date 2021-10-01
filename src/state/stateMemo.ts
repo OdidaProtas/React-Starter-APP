@@ -7,7 +7,6 @@ const stateMemo = (dispatch: any, state: any) => ({
     localStorage.clear();
     dispatch({ type: "SIGN_OUT" });
   },
-  state: () => state,
 });
 
 export default stateMemo;

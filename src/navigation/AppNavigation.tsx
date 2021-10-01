@@ -1,5 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import { useAxios } from "../constants";
 import { StateContext } from "../state";
 import ProtectedRoute from "./ProtectedRoute";
@@ -25,15 +31,16 @@ function Home() {
     <div>
       <p>HomeComponent</p>
       <ul>
-        <Link to="/login">Login</Link>
-        <Link to="protected">Protected</Link>
+        <Link to="/protected">Protected Route</Link>
       </ul>
       {loading ? (
         <p>Fetching data...</p>
       ) : (
         <div>
           {data
-            ? data.map((data: any, idx: number) => <p>{data.title}</p>)
+            ? data.map((data: any, idx: number) => (
+                <p key={idx}>{data.title}</p>
+              ))
             : null}
         </div>
       )}
@@ -43,8 +50,10 @@ function Home() {
 
 function Login() {
   const { signIn }: any = useContext(StateContext);
+  const history = useHistory();
   const handleLogin = () => {
     signIn("userToken");
+    history.push("/protected");
   };
   return (
     <div>
@@ -59,8 +68,10 @@ function Account() {
   const handleSignOut = () => signOut();
   return (
     <div>
-      <p>AccuntComponent</p>
-      <button onClick={handleSignOut}>Login</button>
+      <p>Account Component</p>
+      <Link to="/">Back home</Link>
+      <p>You signed in, you can now view this page</p>
+      <button onClick={handleSignOut}>Sign Out</button>
     </div>
   );
 }

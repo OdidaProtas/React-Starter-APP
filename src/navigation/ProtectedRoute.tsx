@@ -4,7 +4,9 @@ import { StateContext } from "../state";
 
 export default function ProtectedRoute({ component: Component, ...rest }: any) {
   const { getAppState }: any = useContext(StateContext);
-  const isLoggedIn = getAppState();
+  const { isLoggedIn } = getAppState();
+  console.log(isLoggedIn);
+
   return (
     <Route
       {...rest}

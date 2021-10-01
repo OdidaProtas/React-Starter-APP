@@ -13,12 +13,13 @@ import {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState) as any;
   const stateContext: any = useMemo(() => stateMemo(dispatch, state), []);
+  const getAppState = () => state;
   useEffect(() => {
     const bootstrap = () => bootstrapAsync(dispatch);
     bootstrap();
   }, []);
   return (
-    <StateContext.Provider value={stateContext}>
+    <StateContext.Provider value={{ ...stateContext, getAppState }}>
       <AppNavigation />
     </StateContext.Provider>
   );
