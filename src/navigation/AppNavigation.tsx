@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useAxios } from "../constants";
 import { StateContext } from "../state";
 import ProtectedRoute from "./ProtectedRoute";
@@ -24,6 +24,10 @@ function Home() {
   return (
     <div>
       <p>HomeComponent</p>
+      <ul>
+        <Link to="/login">Login</Link>
+        <Link to="protected">Protected</Link>
+      </ul>
       {loading ? (
         <p>Fetching data...</p>
       ) : (
