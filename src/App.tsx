@@ -1,5 +1,4 @@
-import { useMemo, useReducer, useState, useEffect } from "react";
-import logo from "./logo.svg";
+import { useMemo, useReducer, useEffect } from "react";
 import "./App.css";
 import AppNavigation from "./navigation/AppNavigation";
 import {

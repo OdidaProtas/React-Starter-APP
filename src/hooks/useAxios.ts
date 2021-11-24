@@ -4,10 +4,9 @@ import { refTryRefactor, axiosInstance } from "../constants";
 export interface UseAxiosRequestInterface {
   method: "post" | "patch" | "get" | "put" | "delete";
   endpoint: string;
-  isAuthenticated: boolean;
   payload?: any;
-  errorHandler: any;
-  successHandler: any;
+  errorHandler?: any;
+  successHandler?: any;
 }
 
 export default function useAxios() {
